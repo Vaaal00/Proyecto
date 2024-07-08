@@ -1,6 +1,6 @@
 
 package controladores;
 
-public class Final {
+public class NewClass {
 
 }
