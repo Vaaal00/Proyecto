@@ -3,6 +3,7 @@ package controladores;
 
 import excepciones.IdExcepcion;
 import java.util.ArrayList;
+import modelo.Cajero;
 import modelo.Usuario;
 import serializadora.Singleton;
 
@@ -46,8 +47,8 @@ public class ControladorUsuario {
             aux.setContrasena(usuario.getContrasena());
             aux.setNombre(usuario.getNombre());
             aux.setFechaNacimiento(usuario.getFechaNacimiento());
-            if (usuario.getRol() == "Docente") {
-                Docente docente = (Docente) usuario;
+            if (usuario.getRol() == "Cajero") {
+                Cajero cajero = (Cajero) usuario;
                 docente.setProfesion(docente.getProfesion());
             }else if (usuario.getRol() == "Estudiante") {
                 Estudiante estudiante = (Estudiante) usuario;
