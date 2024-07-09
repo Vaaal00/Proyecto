@@ -42,4 +42,8 @@ public class Categoria {
         this.id = id;
         this.descripcion = descripcion;
     }
+
+    
+    
+    
 }

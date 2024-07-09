@@ -14,8 +14,7 @@ public class Producto implements Serializable {
     private Date fechaVencimiento;
     private Proveedor proveedor;
 
-    public Producto() {
-        
+    public Producto() {       
     }
 
     public Producto(String nombre, int codigo, Categoria categoria, float precio, Date fechaVencimiento, 

@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Cajero extends Usuario {
 
+    
     public Cajero() {
     }
 

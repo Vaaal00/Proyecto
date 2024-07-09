@@ -1,27 +1,28 @@
 
 package modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class RedencionPuntos {
-    private Date fecha;
+    
+    private LocalDate fecha;
     private int puntosCanjeados;
     private double descuentoCanjeado;
 
     public RedencionPuntos() {
     }
 
-    public RedencionPuntos(Date fecha, int puntosCanjeados, double descuentoCanjeado) {
+    public RedencionPuntos(LocalDate fecha, int puntosCanjeados, double descuentoCanjeado) {
         this.fecha = fecha;
         this.puntosCanjeados = puntosCanjeados;
         this.descuentoCanjeado = descuentoCanjeado;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
