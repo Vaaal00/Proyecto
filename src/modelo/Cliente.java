@@ -1,25 +1,41 @@
 
 package modelo;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.io.Serializable;
 
 
-public class Cliente extends Usuario  {
-    private int puntosAcumulados;
-    ArrayList<RedencionPuntos> historialRedenciones = new ArrayList<>();
+public class Cliente extends Usuario implements Serializable{
+    
+    private String email;
+    private String contrasena;
 
-    public Cliente(int puntosAcumulados) {
-        this.puntosAcumulados = puntosAcumulados;
+    public Cliente(String nombre, String apellido, String cedula, String edad, String email, String contrasena) {
+        super(nombre, apellido, cedula, edad);
+        this.email = email;
+        this.contrasena = contrasena;
+        
+                
+        
     }
 
-    public Cliente(int puntosAcumulados, String rol, int id, String email, String contrasena, int telefono, String nombre, LocalDate fechaNacimiento, int edad) {
-        super(rol, id, email, contrasena, telefono, nombre, fechaNacimiento, edad);
-        this.puntosAcumulados = puntosAcumulados;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String Contrasena) {
+        this.contrasena = Contrasena;
     }
     
     
-   
+    
     
 
 }
