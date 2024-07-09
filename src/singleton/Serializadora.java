@@ -8,35 +8,23 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import modelo.Cliente;
+import modelo.Usuario;
 
 
-public class SingletonCliente {
+public class Serializadora {
 
-    private static final SingletonCliente INSTANCIA = new SingletonCliente();
-    
-    private ArrayList<Cliente> clientes;
-
-    private SingletonCliente() {
-        clientes = leerCliente();
-    }
-
-    public static SingletonCliente getINSTANCIA() {
-        return INSTANCIA;
-    }
-
-    public ArrayList<Cliente> getClientes() {
-        return clientes;
+    public Serializadora() {
     }
     
-        public void escribirCliente() {
+    public void escribirCliente(ArrayList<Cliente> clientes) {
         try {
-            FileOutputStream archivo
+           FileOutputStream archivo
                    = new FileOutputStream("clientes.dat");
-            ObjectOutputStream escritor
+           ObjectOutputStream escritor
                    = new ObjectOutputStream(archivo);
-            escritor.writeObject(clientes);
+           escritor.writeObject(clientes);
         } catch (IOException ex) {
-//           ex.printStackTrace();
+           ex.printStackTrace();
         }
     }
     
@@ -48,7 +36,7 @@ public class SingletonCliente {
                     = new ObjectInputStream(archivo);
             return (ArrayList<Cliente>) lector.readObject();
         } catch (IOException | ClassNotFoundException ex) {
-//            ex.printStackTrace();
+            ex.printStackTrace();
             return new ArrayList<>();
         }
     }

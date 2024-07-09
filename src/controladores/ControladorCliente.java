@@ -1,52 +1,62 @@
 package controladores;
 
 
+import excepciones.YaRegistradoException;
+import java.util.ArrayList;
 import modelo.Cliente;
 import singleton.SingletonCliente;
 
 public class ControladorCliente {
 
-    SingletonCliente instancia;
+    private ArrayList<Cliente> clientes;
 
     public ControladorCliente() {
-        instancia = SingletonCliente.getInstancia();
+        clientes = SingletonCliente.getINSTANCIA().getClientes();
     }
 
-    public boolean guardarCliente(Cliente cliente) {
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void guardarCliente(Cliente cliente)
+        throws YaRegistradoException {
         Cliente aux = buscarCliente(cliente.getCedula());
         if (aux == null) {
-            instancia.getClientes().add(cliente);
-            instancia.escribirObjeto();
-            return true;
+            clientes.add(cliente);
+            SingletonCliente.getINSTANCIA().escribirCliente();
+        } else {
+            throw new YaRegistradoException();
         }
-        return false;
     }
 
-    public Cliente buscarCliente(String cedula) {
-        for (int i = 0; i < instancia.leerObjeto().size(); i++) {
-            if (instancia.leerObjeto().get(i).getCedula().equals(cedula)) {
-                return instancia.leerObjeto().get(i);
+    public Cliente buscarCliente(int cedula) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula() == cedula) {
+                return clientes.get(i);
             }
         }
         return null;
     }
 
     public boolean editarCliente(Cliente cliente) {
-        for (int i = 0; i < instancia.leerObjeto().size(); i++) {
-            if (instancia.leerObjeto().get(i).getCedula().equals(cliente.getCedula())) {
-                instancia.leerObjeto().set(i, cliente);
-                instancia.escribirObjeto();
-                return true;
-            }
+        Cliente aux = buscarCliente(cliente.getCedula());
+        if (aux != null) {
+            aux.setNombre(cliente.getNombre());
+            aux.setApellido(cliente.getApellido());
+            aux.setEdad(cliente.getEdad());
+            aux.setEmail(cliente.getEmail());
+            aux.setContrasena(cliente.getContrasena());
+            SingletonCliente.getINSTANCIA().escribirCliente();
+            return true;
         }
         return false;
     }
 
-    public boolean eliminarCliente(String cedula) {
-        for (int i = 0; i < instancia.leerObjeto().size(); i++) {
-            if (instancia.leerObjeto().get(i).getCedula().equals(cedula)) {
-                instancia.leerObjeto().remove(i);
-                instancia.escribirObjeto();
+    public boolean eliminarCliente(int cedula) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula() == cedula) {
+                clientes.remove(i);
+                SingletonCliente.getINSTANCIA().escribirCliente();
                 return true;
             }
         }
@@ -54,27 +64,27 @@ public class ControladorCliente {
     }
 
     public boolean validarIngresoCliente(String nombre, String contrasena) {
-        for (int i = 0; i < instancia.leerObjeto().size(); i++) {
-            if (instancia.leerObjeto().get(i).getNombre().equals(nombre)
-                    && instancia.leerObjeto().get(i).getContrasena().equals(contrasena)) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getNombre().equals(nombre)
+                    && clientes.get(i).getContrasena().equals(contrasena)) {
                 return true;
             }
         }
         return false;
     }
 
-    public boolean validarCedulaCliente(String cedula) {
-        for (int i = 0; i < instancia.leerObjeto().size(); i++) {
-            if (instancia.leerObjeto().get(i).getCedula().equals(cedula)) {
+    public boolean validarCedulaCliente(int cedula) {
+        for (int i = 0; i < clientes.size(); i++) {
+            if (clientes.get(i).getCedula() == cedula) {
                 return true;
             }
         }
         return false;
     }
 
-    public Cliente buscarPacienteSolo() {
-        for (int i = 0; i < instancia.leerObjeto().size(); i++) {
-            return instancia.leerObjeto().get(i);
+    public Cliente buscarClienteSolo() {
+        for (int i = 0; i < clientes.size(); i++) {
+            return clientes.get(i);
         }
         return null;
     }

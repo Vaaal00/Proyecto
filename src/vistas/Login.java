@@ -13,14 +13,15 @@ import javax.swing.JOptionPane;
  * @author Cami
  */
 public class Login extends javax.swing.JFrame {
+    
     ControladorAdmin controladorAdmin;
     ControladorCliente controladorCliente;
 
     public Login() {
+        initComponents();
         setLocationRelativeTo(this);
         controladorAdmin = new ControladorAdmin();
         controladorCliente = new ControladorCliente();
-        initComponents();
     }
 
     /**
@@ -132,12 +133,10 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        // TODO add your handling code here:
         String nombre = txtId.getText();
         String contrasena = txtContrasena.getText();
         boolean validarCliente = controladorCliente.validarIngresoCliente(nombre, contrasena);
         boolean validarAdmin = controladorAdmin.validarAdmin(nombre, contrasena);
-        //boolean validar3 = controlador2.validarIngreso(nombre, contrasena);
         if (validarAdmin) {
             InicioAdmin inicioP = new InicioAdmin();
             inicioP.setVisible(true);
@@ -146,20 +145,14 @@ public class Login extends javax.swing.JFrame {
             InicioCliente inicioClien = new InicioCliente();
             inicioClien.setVisible(true);
             this.dispose();
-//        }else if (validar3) {
-//            InicioMedico inicioM = new InicioMedico();
-//            inicioM.setVisible(true);
-//            this.dispose();
-        }
         
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "¡ATENCION: No se encontro el usuario!");
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroClienteActionPerformed
-        // TODO add your handling code here:
-         RegistroClientes registroClien = new RegistroClientes();
+        RegistroClientes registroClien = new RegistroClientes();
         registroClien.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnRegistroClienteActionPerformed
@@ -168,31 +161,6 @@ public class Login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

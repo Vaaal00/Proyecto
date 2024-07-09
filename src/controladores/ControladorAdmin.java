@@ -3,8 +3,7 @@ package controladores;
 
 public class ControladorAdmin {
     
-     public ControladorAdmin(){
-        
+     public ControladorAdmin(){        
     }
     
     public boolean validarAdmin(String nombre, String contrasena){

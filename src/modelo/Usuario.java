@@ -3,16 +3,16 @@ package modelo;
 import java.io.Serializable;
 
 public class Usuario implements Serializable{
+    
     private String nombre;
     private String apellido;
-    private String cedula;
-    private String edad;
+    private int cedula;
+    private int edad;
 
     public Usuario() {
     }
     
-
-    public Usuario(String nombre, String apellido, String cedula, String edad) {
+    public Usuario(String nombre, String apellido, int cedula, int edad) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.cedula = cedula;
@@ -35,19 +35,19 @@ public class Usuario implements Serializable{
         this.apellido = apellido;
     }
 
-    public String getCedula() {
+    public int getCedula() {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
+    public void setCedula(int cedula) {
         this.cedula = cedula;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
     

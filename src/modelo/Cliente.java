@@ -4,18 +4,18 @@ package modelo;
 import java.io.Serializable;
 
 
-public class Cliente extends Usuario implements Serializable{
+public class Cliente extends Usuario implements Serializable {
     
     private String email;
     private String contrasena;
+    
+    public Cliente() {
+    }
 
-    public Cliente(String nombre, String apellido, String cedula, String edad, String email, String contrasena) {
+    public Cliente(String nombre, String apellido, int cedula, int edad, String email, String contrasena) {
         super(nombre, apellido, cedula, edad);
         this.email = email;
-        this.contrasena = contrasena;
-        
-                
-        
+        this.contrasena = contrasena;      
     }
 
     public String getEmail() {
@@ -33,9 +33,6 @@ public class Cliente extends Usuario implements Serializable{
     public void setContrasena(String Contrasena) {
         this.contrasena = Contrasena;
     }
-    
-    
-    
-    
 
+    
 }
