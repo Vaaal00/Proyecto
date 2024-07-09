@@ -11,7 +11,7 @@ public class Proveedor extends Usuario {
     public Proveedor() {
     }
 
-    public Proveedor(String nombre, String apellido, String cedula, String edad, Empresa empresa) {
+    public Proveedor(String nombre, String apellido, int cedula, int edad, Empresa empresa) {
         super(nombre, apellido, cedula, edad);
         this.empresa = empresa;
         
