@@ -10,8 +10,7 @@ public class Empresa {
     private int nit;
     private String email;
     
-    public Empresa() {
-        
+    public Empresa() {        
     }
 
     public Empresa(String nombre, String direccion, int telefono, int nit, String email) {

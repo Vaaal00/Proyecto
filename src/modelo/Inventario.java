@@ -1,14 +1,15 @@
 
 package modelo;
 
+import java.io.Serializable;
 
-public class Inventario {
+
+public class Inventario implements Serializable {
 
     private Producto producto;
     private int cantidad;
 
-    public Inventario() {
-        
+    public Inventario() {       
     }
     
     public Inventario(Producto producto, int cantidad) {
