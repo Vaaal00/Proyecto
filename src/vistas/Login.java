@@ -132,8 +132,7 @@ public class Login extends javax.swing.JFrame {
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
        String idUsuario = txtId.getText();
         String contrasena = txtContrasena.getText();
-        
-//       
+               
         boolean ans = false;
         int id = Integer.parseInt(idUsuario);
 

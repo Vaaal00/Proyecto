@@ -2,6 +2,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -11,13 +12,13 @@ public class Producto implements Serializable {
     private int codigo;
     private Categoria categoria;
     private float precio;
-    private Date fechaVencimiento;
+    private LocalDate fechaVencimiento;
     private Proveedor proveedor;
 
     public Producto() {       
     }
 
-    public Producto(String nombre, int codigo, Categoria categoria, float precio, Date fechaVencimiento, 
+    public Producto(String nombre, int codigo, Categoria categoria, float precio, LocalDate fechaVencimiento, 
             Proveedor proveedor) {
         this.nombre = nombre;
         this.codigo = codigo;
@@ -51,11 +52,11 @@ public class Producto implements Serializable {
         this.precio = precio;
     }
 
-    public Date getFechaVencimiento() {
+    public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
     }
 
-    public void setFechaVencimiento(Date fechaVencimiento) {
+    public void setFechaVencimiento(LocalDate fechaVencimiento) {
         this.fechaVencimiento = fechaVencimiento;
     }
 

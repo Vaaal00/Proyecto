@@ -13,6 +13,8 @@ public class Usuario implements Serializable{
     private LocalDate cumple;
     private String email;
     private String contrasena;
+    // telefono y edad
+    
     public Usuario() {
     }
     
