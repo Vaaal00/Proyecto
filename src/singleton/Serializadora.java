@@ -13,7 +13,7 @@ import modelo.Usuario;
 
 public class Serializadora {
 
-    public Serializadora() {
+    private Serializadora() {
     }
     
     public void escribirCliente(ArrayList<Cliente> clientes) {
@@ -28,7 +28,7 @@ public class Serializadora {
         }
     }
     
-    public ArrayList<Cliente> leerCliente() {
+    private ArrayList<Cliente> leerCliente() {
         try {
             FileInputStream archivo
                     = new FileInputStream("clientes.dat");

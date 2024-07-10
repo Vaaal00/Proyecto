@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * 
+ * 
  */
 package vistas;
 
@@ -9,34 +9,34 @@ import excepciones.FechaValidacionEx;
 import excepciones.IdEx;
 import excepciones.MenorEdadEx;
 import excepciones.UsuarioNoEncontradoEx;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cajero;
 import modelo.Cliente;
-import modelo.EncargadoInventario;
 import modelo.Usuario;
 
 /**
  *
- * @author Valeria
+ * @author Cami
  */
-public class VistaRegistro extends javax.swing.JFrame {
-
-    private ControladorUsuario controladorUsuario;
+public class RegistroCliente extends javax.swing.JFrame {
     
+    ControladorUsuario controlador;
+
     /**
-     * Creates new form VistaRegistro
+     * Creates new form RegistroCliente
      */
-    public VistaRegistro() {
+    public RegistroCliente() {
+        ControladorUsuario controlador;
+        
         initComponents();
-        setLocationRelativeTo(this);
-        controladorUsuario = new ControladorUsuario();
+        controlador = new ControladorUsuario();
     }
 
     /**
@@ -48,8 +48,10 @@ public class VistaRegistro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        btnCerrar = new javax.swing.JButton();
         jLayeredPane2 = new javax.swing.JLayeredPane();
-        jLabel4 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         txtCumple = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -62,19 +64,31 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cbxRoles = new javax.swing.JComboBox<>();
         txtEmail = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
-        btnCerrar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Gestion"));
+        btnCerrar.setText("Cerrar Sesion");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Rol");
+        jLayeredPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Registrarse"));
 
         btnEditar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnEditar.setText("Editar");
@@ -113,21 +127,11 @@ public class VistaRegistro extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Nacimiento:");
 
-        cbxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una", "Cajero", "Encargado inventario", "Proveedor" }));
-
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
-            }
-        });
-
-        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnBuscar.setText("Bucar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -139,7 +143,6 @@ public class VistaRegistro extends javax.swing.JFrame {
             }
         });
 
-        jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txtCumple, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -151,10 +154,8 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLayeredPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(cbxRoles, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txtEmail, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(btnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBorrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
@@ -170,11 +171,9 @@ public class VistaRegistro extends javax.swing.JFrame {
                         .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(59, 59, 59)
                                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(34, 34, 34)
                                 .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -192,14 +191,12 @@ public class VistaRegistro extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbxRoles, 0, 1, Short.MAX_VALUE)
                                     .addComponent(txtContrasena)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,13 +216,10 @@ public class VistaRegistro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbxRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -233,47 +227,53 @@ public class VistaRegistro extends javax.swing.JFrame {
                 .addGap(24, 24, 24))
         );
 
-        btnCerrar.setText("Cerrar Sesion");
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Inicio");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCerrar))
+                    .addComponent(jLayeredPane2))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
-                        .addComponent(btnCerrar))
-                    .addComponent(jLayeredPane2))
-                .addContainerGap())
+                .addGap(30, 30, 30)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCerrar)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try{
@@ -282,10 +282,10 @@ public class VistaRegistro extends javax.swing.JFrame {
             String contrasena = txtContrasena.getText();
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
-            String rol = cbxRoles.getSelectedItem().toString();
+            String rol = "Cliente";
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") || cumple.isEmpty() || cumple.startsWith(" ") ||
-                contrasena.isEmpty() || contrasena.startsWith(" ") || cbxRoles.getSelectedIndex() == 0){
+                contrasena.isEmpty() || contrasena.startsWith(" ") ){
                 JOptionPane.showMessageDialog(null, "Llena todos los campos");
                 return;
             }
@@ -307,12 +307,10 @@ public class VistaRegistro extends javax.swing.JFrame {
 
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
-
-            Usuario usuario = controladorUsuario.buscarUsuario(id);
-
+            Usuario usuario = controlador.buscarUsuario(id);
             if(usuario.getRol().equals("Cajero")){
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);
-                controladorUsuario.actualizarUsuario(cajero);
+                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
+                controlador.actualizarUsuario(cliente);
             }
 
             if (usuario.getRol().equals("Encargado inventario")) {
@@ -329,8 +327,10 @@ public class VistaRegistro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Usuario actualizado");
             LlenarTabla();
             limpiarCampos();
-        }catch(MenorEdadEx | IdEx | UsuarioNoEncontradoEx | FechaValidacionEx |  DateTimeParseException ex){
+        }catch(FechaValidacionEx |  DateTimeParseException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (UsuarioNoEncontradoEx ex) {
+            Logger.getLogger(RegistroCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -341,11 +341,11 @@ public class VistaRegistro extends javax.swing.JFrame {
             String contrasena = txtContrasena.getText();
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
-            String rol = cbxRoles.getSelectedItem().toString();
+            String rol = "Cliente";
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") ||
                 cumple.isEmpty() || cumple.startsWith(" ") ||
-                contrasena.isEmpty() || contrasena.startsWith(" ") || cbxRoles.getSelectedIndex() == 0){
+                contrasena.isEmpty() || contrasena.startsWith(" ") ){
                 JOptionPane.showMessageDialog(null, "Escribe los campos");
                 return;
             }
@@ -368,65 +368,14 @@ public class VistaRegistro extends javax.swing.JFrame {
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
 
-            if(cbxRoles.getSelectedItem() == "Cajero"){
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);//
-                controladorUsuario.agregarUsuario(cajero);
-            }
-
-            if(cbxRoles.getSelectedItem() == "Encargado inventario"){
-
-                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email,contrasena, id);
-                controladorUsuario.agregarUsuario(encargadoInventario);
-            }
-// cambiar a proveedor
-            if(cbxRoles.getSelectedItem() == "Proveedor"){
-
-                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
-                controladorUsuario.agregarUsuario(cliente);
-            }
+           
             JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
             limpiarCampos();
             LlenarTabla();
-        }catch(MenorEdadEx | IdEx | FechaValidacionEx |  DateTimeParseException ex){
+        }catch(FechaValidacionEx |  DateTimeParseException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-
     }//GEN-LAST:event_btnAgregarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String idTxt = txtId.getText();
-
-        if(idTxt.isEmpty() || idTxt.startsWith(" ")){
-            JOptionPane.showMessageDialog(null, "Escribe un Id");
-            return;
-        }
-
-        Usuario usuario = controladorUsuario.buscarUsuario(Integer.parseInt(idTxt));
-
-        if(usuario == null){
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-            return;
-        }
-
-        txtCumple.setText(String.valueOf(usuario.getCumple()));
-        txtEmail.setText(usuario.getEmail());
-        txtNombre.setText(usuario.getNombre());
-        txtContrasena.setText(usuario.getContrasena());
-        cbxRoles.setSelectedItem(usuario.getRol());
-
-        if("Cajero".equals(usuario.getRol())){
-            Cajero cajero = (Cajero) usuario;
-
-        }
-        if("Administrador inventario".equals(usuario.getRol())){
-            EncargadoInventario encargadoInventario = (EncargadoInventario) usuario;
-
-        }
-        if("Cliente".equals(usuario.getRol())){
-            Cliente cliente = (Cliente) usuario;
-
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         String idTxt = txtId.getText();
@@ -438,7 +387,7 @@ public class VistaRegistro extends javax.swing.JFrame {
 
         int id = Integer.parseInt(idTxt);
 
-        boolean resp = controladorUsuario.eliminarUsuario(id);
+        boolean resp = controlador.eliminarUsuario(id);
 
         if(resp){
             JOptionPane.showMessageDialog(null, "Usuario eliminado");
@@ -449,48 +398,8 @@ public class VistaRegistro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBorrarActionPerformed
 
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnCerrarActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        VistaAdmin vadmin = new VistaAdmin();
-        vadmin.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtCumpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCumpleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCumpleActionPerformed
-
-    private void LlenarTabla(){
-        DefaultTableModel model = new DefaultTableModel();
-        String[] columns = new String[5];
-        columns[0] = "ID";
-        columns[1] = "Nombre";
-        columns[2] = "Edad";
-        columns[3] = "Rol";
-        columns[4] = "Email";
-                
-        model.setColumnIdentifiers(columns);
-        String[] rows = new String[5];
-        
-        for (int i = 0; i < controladorUsuario.getUsuarios().size(); i++) {
-            Usuario usuario = controladorUsuario.getUsuarios().get(i);
-            rows[0] = String.valueOf(usuario.getId());
-            rows[1] = usuario.getNombre();
-            rows[2] = (String.valueOf(usuario.getEdad(usuario.getCumple())));
-            rows[3] = String.valueOf(usuario.getRol());
-            rows[4] = String.valueOf(usuario.getEmail());
-            model.addRow(rows);
-        }
-        tblUsuarios.setModel(model);
-    }
     
-    public boolean cumpleValidacion(String input) throws FechaValidacionEx{       
+     public boolean cumpleValidacion(String input) throws FechaValidacionEx{       
         String caracter = "\\d{4}-\\d{2}-\\d{2}";
         Pattern pattern = Pattern.compile(caracter);
         Matcher matcher = pattern.matcher(input);
@@ -499,16 +408,40 @@ public class VistaRegistro extends javax.swing.JFrame {
         }        
         throw new FechaValidacionEx();       
     }
-    
-    private void limpiarCampos(){
+     
+     private void LlenarTabla(){
+        DefaultTableModel model = new DefaultTableModel();
+        String[] columns = new String[4];
+        columns[0] = "ID";
+        columns[1] = "Nombre";
+        columns[2] = "Edad";
+        columns[3] = "Email";     
+        model.setColumnIdentifiers(columns);
+        String[] rows = new String[4];
+        
+        for (int i = 0; i < controlador.getUsuarios().size(); i++) {
+            Usuario usuario = controlador.getUsuarios().get(i);
+            rows[0] = String.valueOf(usuario.getId());
+            rows[1] = usuario.getNombre();
+            rows[2] = (String.valueOf(usuario.getEdad(usuario.getCumple())));
+            rows[3] = String.valueOf(usuario.getEmail());
+            model.addRow(rows);
+        }
+        tblUsuarios.setModel(model);
+    }
+     
+     private void limpiarCampos(){
         txtCumple.setText("");
         txtId.setText("");
         txtNombre.setText("");
         txtContrasena.setText("");
         txtEmail.setText("");
-        cbxRoles.setSelectedIndex(0);       
+              
     }
-    
+    private void txtCumpleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCumpleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCumpleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,23 +459,20 @@ public class VistaRegistro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaRegistro().setVisible(true);
+                new RegistroCliente().setVisible(true);
             }
         });
     }
@@ -550,18 +480,16 @@ public class VistaRegistro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnBorrar;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JComboBox<String> cbxRoles;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtContrasena;

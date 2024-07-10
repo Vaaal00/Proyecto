@@ -14,7 +14,7 @@ public class Singleton {
     private ArrayList<Usuario> usuarios;
     
 
-    public Singleton() {
+    private Singleton() {
         
         usuarios = leerUsuarios();
     }
@@ -37,7 +37,7 @@ public class Singleton {
         }
     }
     
-    public ArrayList<Usuario> leerUsuarios(){
+    private ArrayList<Usuario> leerUsuarios(){
         try{
             FileInputStream file = new  FileInputStream("usuarios.dat");
             ObjectInputStream reader = new ObjectInputStream(file);

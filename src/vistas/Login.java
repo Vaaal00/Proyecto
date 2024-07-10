@@ -149,6 +149,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroClienteActionPerformed
+        RegistroCliente registroCliente = new RegistroCliente();
+        registroCliente.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_btnRegistroClienteActionPerformed
 
