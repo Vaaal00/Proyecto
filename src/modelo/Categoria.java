@@ -8,11 +8,15 @@ public class Categoria {
     private int id;
     private String descripcion;
     
-    public Categoria() {
-        
-        
+    public Categoria() {       
     }
-
+   
+    public Categoria(String nombre, int id, String descripcion) {
+        this.nombre = nombre;
+        this.id = id;
+        this.descripcion = descripcion;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -36,14 +40,5 @@ public class Categoria {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    public Categoria(String nombre, int id, String descripcion) {
-        this.nombre = nombre;
-        this.id = id;
-        this.descripcion = descripcion;
-    }
-
-    
-    
-    
+        
 }

@@ -1,6 +1,6 @@
 /*
- * 
- * 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package vistas;
 
@@ -9,10 +9,10 @@ import excepciones.FechaValidacionEx;
 import excepciones.IdEx;
 import excepciones.MenorEdadEx;
 import excepciones.UsuarioNoEncontradoEx;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -24,19 +24,19 @@ import modelo.Usuario;
 
 /**
  *
- * @author Cami
+ * @author Valeria
  */
-public class InicioAdmin extends javax.swing.JFrame {
-    
-    private ControladorUsuario controladorUsuario;
+public class VistaRegistro extends javax.swing.JFrame {
 
+    private ControladorUsuario controladorUsuario;
+    
     /**
-     * Creates new form VistaAdmin
+     * Creates new form VistaRegistro
      */
-    public InicioAdmin() {
-        controladorUsuario = new ControladorUsuario();
-        setLocationRelativeTo(this);
+    public VistaRegistro() {
         initComponents();
+        setLocationRelativeTo(this);
+        controladorUsuario = new ControladorUsuario();
     }
 
     /**
@@ -48,7 +48,6 @@ public class InicioAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel4 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
@@ -69,6 +68,7 @@ public class InicioAdmin extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +105,7 @@ public class InicioAdmin extends javax.swing.JFrame {
 
         jLabel6.setText("Email:");
 
-        jLabel3.setText("Cumpleaños");
+        jLabel3.setText("Fecha Nacimiento:");
 
         cbxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una", "Cajero", "Encargado inventario", "Proveedor" }));
 
@@ -133,13 +133,6 @@ public class InicioAdmin extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar.setText("Cerrar Sesion");
-        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarActionPerformed(evt);
-            }
-        });
-
         jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txtCumple, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -157,32 +150,27 @@ public class InicioAdmin extends javax.swing.JFrame {
         jLayeredPane2.setLayer(btnAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBorrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(btnCerrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
         jLayeredPane2Layout.setHorizontalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCerrar)
-                            .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 47, Short.MAX_VALUE))
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
                                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jLayeredPane2Layout.createSequentialGroup()
                                         .addComponent(jLabel6)
@@ -204,13 +192,13 @@ public class InicioAdmin extends javax.swing.JFrame {
                                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cbxRoles, 0, 1, Short.MAX_VALUE)
                                     .addComponent(txtContrasena)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(171, Short.MAX_VALUE))))
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,178 +220,54 @@ public class InicioAdmin extends javax.swing.JFrame {
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(btnCerrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
-        );
+        btnCerrar.setText("Cerrar Sesion");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Inicio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(459, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCerrar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(647, Short.MAX_VALUE))
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCerrar)
+                    .addComponent(jButton1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        // TODO add your handling code here:
-        Login login = new Login();
-        login.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnCerrarActionPerformed
-
-    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        String idTxt = txtId.getText();
-
-        if(idTxt.isEmpty() || idTxt.startsWith(" ")){
-            JOptionPane.showMessageDialog(null, "Escribe un ID");
-            return;
-        }
-
-        int id = Integer.parseInt(idTxt);
-
-        boolean resp = controladorUsuario.eliminarUsuario(id);
-
-        if(resp){
-            JOptionPane.showMessageDialog(null, "Usuario eliminado");
-            LlenarTabla();
-            limpiarCampos();
-        }else{
-            JOptionPane.showMessageDialog(null, "Algo salio mal");
-        }
-    }//GEN-LAST:event_btnBorrarActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        String idTxt = txtId.getText();
-
-        if(idTxt.isEmpty() || idTxt.startsWith(" ")){
-            JOptionPane.showMessageDialog(null, "Escribe un Id");
-            return;
-        }
-
-        Usuario usuario = controladorUsuario.buscarUsuario(Integer.parseInt(idTxt));
-
-        if(usuario == null){
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-            return;
-        }
-
-        txtCumple.setText(String.valueOf(usuario.getCumple()));
-        txtEmail.setText(usuario.getEmail());
-        txtNombre.setText(usuario.getNombre());
-        txtContrasena.setText(usuario.getContrasena());
-        cbxRoles.setSelectedItem(usuario.getRol());
-
-        if("Cajero".equals(usuario.getRol())){
-            Cajero cajero = (Cajero) usuario;
-           
-        }
-        if("Administrador inventario".equals(usuario.getRol())){
-            EncargadoInventario encargadoInventario = (EncargadoInventario) usuario;
-            
-        }
-        if("Cliente".equals(usuario.getRol())){
-            Cliente cliente = (Cliente) usuario;
-           
-        }
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-try{
-            String nombre = txtNombre.getText();
-            String idTxt = txtId.getText();
-            String contrasena = txtContrasena.getText();
-            String cumple = txtCumple.getText();
-            String email = txtEmail.getText();
-            String rol = cbxRoles.getSelectedItem().toString();
-
-            if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") || cumple.isEmpty() || cumple.startsWith(" ") ||
-                contrasena.isEmpty() || contrasena.startsWith(" ") || cbxRoles.getSelectedIndex() == 0){
-                JOptionPane.showMessageDialog(null, "Escribe los campos");
-                return;
-            }
-
-            if (!idTxt.matches("\\d+")) {
-                JOptionPane.showMessageDialog(null, "El id debe de ser numerico");
-                return;
-            }
-
-            if(!cumpleValidacion(cumple)){
-                JOptionPane.showMessageDialog(null, "la manera correcta de escribir es aaaa-mm-dd");
-                return;
-            }
-
-            if(nombre.matches(".*\\d+.*")) {
-                JOptionPane.showMessageDialog(null, "no se permiten numeros en el nombre");
-                return;
-            }
-
-            int id = Integer.parseInt(idTxt);
-            LocalDate cumplean = LocalDate.parse(cumple);
-
-
-
-            if(cbxRoles.getSelectedItem() == "Cajero"){
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);//
-                controladorUsuario.agregarUsuario(cajero);
-            }
-            
-            if(cbxRoles.getSelectedItem() == "Encargado inventario"){
-                
-                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email,contrasena, id);
-                controladorUsuario.agregarUsuario(encargadoInventario);
-            }
-            
-            if(cbxRoles.getSelectedItem() == "Cliente"){
-                
-                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
-                controladorUsuario.agregarUsuario(cliente);
-            }
-            JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
-            limpiarCampos();
-            LlenarTabla();
-        }catch(MenorEdadEx | IdEx | FechaValidacionEx |  DateTimeParseException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        } 
-       
-    }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try{
@@ -444,7 +308,7 @@ try{
                 Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);
                 controladorUsuario.actualizarUsuario(cajero);
             }
-            
+
             if (usuario.getRol().equals("Encargado inventario")) {
                 Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email, contrasena, id);
                 controladorUsuario.actualizarUsuario(encargadoInventario);
@@ -456,17 +320,141 @@ try{
                 controladorUsuario.agregarUsuario(cliente);
             }
 
-            JOptionPane.showMessageDialog(null, "User updated sucessfully");
+            JOptionPane.showMessageDialog(null, "Usuario actualizado");
             LlenarTabla();
             limpiarCampos();
-        }catch(UsuarioNoEncontradoEx | FechaValidacionEx |  DateTimeParseException ex){
+        }catch(MenorEdadEx | IdEx | UsuarioNoEncontradoEx | FechaValidacionEx |  DateTimeParseException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
-        } catch (MenorEdadEx ex) {
-            Logger.getLogger(InicioAdmin.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IdEx ex) {
-            Logger.getLogger(InicioAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        try{
+            String nombre = txtNombre.getText();
+            String idTxt = txtId.getText();
+            String contrasena = txtContrasena.getText();
+            String cumple = txtCumple.getText();
+            String email = txtEmail.getText();
+            String rol = cbxRoles.getSelectedItem().toString();
+
+            if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") ||
+                cumple.isEmpty() || cumple.startsWith(" ") ||
+                contrasena.isEmpty() || contrasena.startsWith(" ") || cbxRoles.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(null, "Escribe los campos");
+                return;
+            }
+
+            if (!idTxt.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "El id debe de ser numerico");
+                return;
+            }
+
+            if(!cumpleValidacion(cumple)){
+                JOptionPane.showMessageDialog(null, "la manera correcta de escribir es aaaa-mm-dd");
+                return;
+            }
+
+            if(nombre.matches(".*\\d+.*")) {
+                JOptionPane.showMessageDialog(null, "no se permiten numeros en el nombre");
+                return;
+            }
+
+            int id = Integer.parseInt(idTxt);
+            LocalDate cumplean = LocalDate.parse(cumple);
+
+            if(cbxRoles.getSelectedItem() == "Cajero"){
+                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);//
+                controladorUsuario.agregarUsuario(cajero);
+            }
+
+            if(cbxRoles.getSelectedItem() == "Encargado inventario"){
+
+                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email,contrasena, id);
+                controladorUsuario.agregarUsuario(encargadoInventario);
+            }
+
+            if(cbxRoles.getSelectedItem() == "Cliente"){
+
+                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
+                controladorUsuario.agregarUsuario(cliente);
+            }
+            JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
+            limpiarCampos();
+            LlenarTabla();
+        }catch(MenorEdadEx | IdEx | FechaValidacionEx |  DateTimeParseException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        String idTxt = txtId.getText();
+
+        if(idTxt.isEmpty() || idTxt.startsWith(" ")){
+            JOptionPane.showMessageDialog(null, "Escribe un Id");
+            return;
+        }
+
+        Usuario usuario = controladorUsuario.buscarUsuario(Integer.parseInt(idTxt));
+
+        if(usuario == null){
+            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            return;
+        }
+
+        txtCumple.setText(String.valueOf(usuario.getCumple()));
+        txtEmail.setText(usuario.getEmail());
+        txtNombre.setText(usuario.getNombre());
+        txtContrasena.setText(usuario.getContrasena());
+        cbxRoles.setSelectedItem(usuario.getRol());
+
+        if("Cajero".equals(usuario.getRol())){
+            Cajero cajero = (Cajero) usuario;
+
+        }
+        if("Administrador inventario".equals(usuario.getRol())){
+            EncargadoInventario encargadoInventario = (EncargadoInventario) usuario;
+
+        }
+        if("Cliente".equals(usuario.getRol())){
+            Cliente cliente = (Cliente) usuario;
+
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        String idTxt = txtId.getText();
+
+        if(idTxt.isEmpty() || idTxt.startsWith(" ")){
+            JOptionPane.showMessageDialog(null, "Escribe un ID");
+            return;
+        }
+
+        int id = Integer.parseInt(idTxt);
+
+        boolean resp = controladorUsuario.eliminarUsuario(id);
+
+        if(resp){
+            JOptionPane.showMessageDialog(null, "Usuario eliminado");
+            LlenarTabla();
+            limpiarCampos();
+        }else{
+            JOptionPane.showMessageDialog(null, "Algo salio mal");
+        }
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        VistaAdmin vadmin = new VistaAdmin();
+        vadmin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void LlenarTabla(){
         DefaultTableModel model = new DefaultTableModel();
@@ -476,8 +464,7 @@ try{
         columns[2] = "Edad";
         columns[3] = "Rol";
         columns[4] = "Email";
-        
-        
+                
         model.setColumnIdentifiers(columns);
         String[] rows = new String[5];
         
@@ -492,18 +479,15 @@ try{
         }
         tblUsuarios.setModel(model);
     }
-    public boolean cumpleValidacion(String input) throws FechaValidacionEx{
-        
+    
+    public boolean cumpleValidacion(String input) throws FechaValidacionEx{       
         String caracter = "\\d{4}-\\d{2}-\\d{2}";
         Pattern pattern = Pattern.compile(caracter);
         Matcher matcher = pattern.matcher(input);
         if(matcher.matches()){
             return true;
-        }
-        
-        throw new FechaValidacionEx();
-        
-        
+        }        
+        throw new FechaValidacionEx();       
     }
     
     private void limpiarCampos(){
@@ -512,9 +496,9 @@ try{
         txtNombre.setText("");
         txtContrasena.setText("");
         txtEmail.setText("");
-        cbxRoles.setSelectedIndex(0);
-        
+        cbxRoles.setSelectedIndex(0);       
     }
+    
     /**
      * @param args the command line arguments
      */
@@ -532,13 +516,13 @@ try{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InicioAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -548,7 +532,7 @@ try{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InicioAdmin().setVisible(true);
+                new VistaRegistro().setVisible(true);
             }
         });
     }
@@ -560,6 +544,7 @@ try{
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JComboBox<String> cbxRoles;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -567,7 +552,6 @@ try{
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblUsuarios;
     private javax.swing.JTextField txtContrasena;

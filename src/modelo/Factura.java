@@ -16,11 +16,10 @@ public class Factura implements Serializable {
     public Factura() {
     }
 
-    public Factura(Cajero cajero, Cliente cliente, LocalDate fecha, int numeroVenta, float total, 
+    public Factura(Cajero cajero, Cliente cliente, int numeroVenta, float total, 
             ArrayList<DetalleFactura> detalles) {
         this.cajero = cajero;
         this.cliente = cliente;
-        this.fecha = fecha;
         this.numeroVenta = numeroVenta;
         this.total = total;
         this.detalles = detalles;
@@ -73,6 +72,6 @@ public class Factura implements Serializable {
     public void setDetalles(ArrayList<DetalleFactura> detalles) {
         this.detalles = detalles;
     }
-    
+   
     
 }

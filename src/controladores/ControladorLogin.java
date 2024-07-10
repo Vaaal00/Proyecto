@@ -21,8 +21,7 @@ public class ControladorLogin {
         return usuarios;
         
     }
-
-     
+ 
       public int getIdAdmin() {
         return idAdmin;
     }
