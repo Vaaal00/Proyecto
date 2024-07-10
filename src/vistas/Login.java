@@ -4,8 +4,9 @@
  */
 package vistas;
 
-import controladores.ControladorAdmin;
-import controladores.ControladorCliente;
+
+import controladores.ControladorLogin;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -14,14 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
-    ControladorAdmin controladorAdmin;
-    ControladorCliente controladorCliente;
+    ControladorLogin controladorLogin;
 
     public Login() {
         initComponents();
         setLocationRelativeTo(this);
-        controladorAdmin = new ControladorAdmin();
-        controladorCliente = new ControladorCliente();
+        controladorLogin = new ControladorLogin();
+       
     }
 
     /**
@@ -48,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setText("Inicio sesion");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Nombre Usuario");
+        jLabel3.setText("id");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Contraseña");
@@ -133,28 +133,27 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        String nombre = txtId.getText();
+       String idUsuario = txtId.getText();
         String contrasena = txtContrasena.getText();
-        boolean validarCliente = controladorCliente.validarIngresoCliente(nombre, contrasena);
-        boolean validarAdmin = controladorAdmin.validarAdmin(nombre, contrasena);
-        if (validarAdmin) {
-            InicioAdmin inicioP = new InicioAdmin();
-            inicioP.setVisible(true);
-            this.dispose();
-        }else if (validarCliente) {
-            InicioCliente inicioClien = new InicioCliente();
-            inicioClien.setVisible(true);
-            this.dispose();
         
-        } else {
-            JOptionPane.showMessageDialog(null, "¡ATENCION: No se encontro el usuario!");
+//       
+        boolean ans = false;
+        int id = Integer.parseInt(idUsuario);
+
+        if (idUsuario.isEmpty() || idUsuario.contains(" ") || contrasena.isEmpty() || contrasena.contains(" ")) {
+            JOptionPane.showMessageDialog(null, "Rellena todos los campos");
+        }
+
+        if (controladorLogin.getIdAdmin() == id && contrasena.equals(controladorLogin.getContraAdmin())) {
+            ans = true;
+            InicioAdmin incio = new InicioAdmin();
+            incio.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroClienteActionPerformed
-        RegistroClientes registroClien = new RegistroClientes();
-        registroClien.setVisible(true);
-        this.dispose();
+      
     }//GEN-LAST:event_btnRegistroClienteActionPerformed
 
     /**

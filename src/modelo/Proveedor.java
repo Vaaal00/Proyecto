@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.time.LocalDate;
@@ -11,8 +10,8 @@ public class Proveedor extends Usuario {
     public Proveedor() {
     }
 
-    public Proveedor(String nombre, String apellido, int cedula, int edad, Empresa empresa) {
-        super(nombre, apellido, cedula, edad);
+    public Proveedor(String nombre,   Empresa empresa,String contrasena, String email, LocalDate cumple, String rol, int id) {
+        super(nombre,  rol, cumple, email, contrasena, id);
         this.empresa = empresa;
         
         

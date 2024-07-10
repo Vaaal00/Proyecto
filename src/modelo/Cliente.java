@@ -1,38 +1,16 @@
-
 package modelo;
 
 import java.io.Serializable;
-
+import java.time.LocalDate;
 
 public class Cliente extends Usuario implements Serializable {
-    
-    private String email;
-    private String contrasena;
-    
+
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, int cedula, int edad, String email, String contrasena) {
-        super(nombre, apellido, cedula, edad);
-        this.email = email;
-        this.contrasena = contrasena;      
+    public Cliente(String nombre, String email, String contrasena, String rol, LocalDate cumple,int id) {
+        super(nombre,  rol, cumple, email, contrasena, id);
+
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String Contrasena) {
-        this.contrasena = Contrasena;
-    }
-
-    
 }
