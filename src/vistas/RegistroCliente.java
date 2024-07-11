@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Cajero;
 import modelo.Cliente;
+import modelo.EncargadoInventario;
 import modelo.Usuario;
 
 /**
@@ -33,7 +34,7 @@ public class RegistroCliente extends javax.swing.JFrame {
      * Creates new form RegistroCliente
      */
     public RegistroCliente() {
-        ControladorUsuario controlador;
+      
         
         initComponents();
         controlador = new ControladorUsuario();
@@ -308,22 +309,13 @@ public class RegistroCliente extends javax.swing.JFrame {
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
             Usuario usuario = controlador.buscarUsuario(id);
-            if(usuario.getRol().equals("Cajero")){
-                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
-                controlador.actualizarUsuario(cliente);
+            if (usuario.getId() == id) {
+                 Usuario cliente = new Cliente(nombre, email, contrasena, rol, cumplean, id);
+            controlador.actualizarUsuario(cliente);
+                
             }
-
-            if (usuario.getRol().equals("Encargado inventario")) {
-                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email, contrasena, id);
-                controladorUsuario.actualizarUsuario(encargadoInventario);
-            }
-
-            if(usuario.getRol().equals("Cliente")){
-                Cliente cliente = (Cliente) usuario;
-                cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
-                controladorUsuario.agregarUsuario(cliente);
-            }
-
+           
+            
             JOptionPane.showMessageDialog(null, "Usuario actualizado");
             LlenarTabla();
             limpiarCampos();
@@ -335,13 +327,15 @@ public class RegistroCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        try{
+
+           try{
             String nombre = txtNombre.getText();
             String idTxt = txtId.getText();
             String contrasena = txtContrasena.getText();
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
             String rol = "Cliente";
+            
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") ||
                 cumple.isEmpty() || cumple.startsWith(" ") ||
@@ -364,17 +358,24 @@ public class RegistroCliente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "no se permiten numeros en el nombre");
                 return;
             }
-
+            
+  
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
 
-           
+            if("Cliente".equals(rol)){
+                Usuario cliente = new Cliente(nombre, email, contrasena, rol, cumplean, id);//
+                controlador.agregarUsuario(cliente);
+            }
+
+            
             JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
             limpiarCampos();
             LlenarTabla();
-        }catch(FechaValidacionEx |  DateTimeParseException ex){
+        }catch(MenorEdadEx | IdEx | FechaValidacionEx |  DateTimeParseException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed

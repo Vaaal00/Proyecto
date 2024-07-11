@@ -22,6 +22,7 @@ import modelo.Cliente;
 import modelo.EncargadoInventario;
 import modelo.Usuario;
 
+
 /**
  *
  * @author Valeria
@@ -67,6 +68,8 @@ public class VistaRegistro extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        btnListar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
@@ -114,6 +117,11 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLabel3.setText("Fecha Nacimiento:");
 
         cbxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una", "Cajero", "Encargado inventario", "Proveedor" }));
+        cbxRoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxRolesActionPerformed(evt);
+            }
+        });
 
         btnAgregar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAgregar.setText("Agregar");
@@ -139,6 +147,20 @@ public class VistaRegistro extends javax.swing.JFrame {
             }
         });
 
+        btnListar.setText("listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
         jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txtCumple, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -156,6 +178,8 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLayeredPane2.setLayer(btnAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBorrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(btnListar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(btnLimpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
@@ -199,6 +223,10 @@ public class VistaRegistro extends javax.swing.JFrame {
                                     .addComponent(cbxRoles, 0, 1, Short.MAX_VALUE)
                                     .addComponent(txtContrasena)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(44, 44, 44)
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnListar)
+                    .addComponent(btnLimpiar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
@@ -229,8 +257,15 @@ public class VistaRegistro extends javax.swing.JFrame {
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
+                        .addComponent(btnLimpiar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnListar)
+                        .addGap(32, 32, 32))))
         );
 
         btnCerrar.setText("Cerrar Sesion");
@@ -256,7 +291,7 @@ public class VistaRegistro extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 336, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 446, Short.MAX_VALUE)
                         .addComponent(btnCerrar))
                     .addComponent(jLayeredPane2))
                 .addContainerGap())
@@ -283,6 +318,8 @@ public class VistaRegistro extends javax.swing.JFrame {
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
             String rol = cbxRoles.getSelectedItem().toString();
+            //esto se cambia
+            String tiempoExperiencia = "no";
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") || cumple.isEmpty() || cumple.startsWith(" ") ||
                 contrasena.isEmpty() || contrasena.startsWith(" ") || cbxRoles.getSelectedIndex() == 0){
@@ -311,7 +348,8 @@ public class VistaRegistro extends javax.swing.JFrame {
             Usuario usuario = controladorUsuario.buscarUsuario(id);
 
             if(usuario.getRol().equals("Cajero")){
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);
+                
+                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id, tiempoExperiencia);
                 controladorUsuario.actualizarUsuario(cajero);
             }
 
@@ -342,6 +380,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
             String rol = cbxRoles.getSelectedItem().toString();
+            String experiencia = "NO";
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") ||
                 cumple.isEmpty() || cumple.startsWith(" ") ||
@@ -364,12 +403,13 @@ public class VistaRegistro extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "no se permiten numeros en el nombre");
                 return;
             }
-
+            
+  
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
 
             if(cbxRoles.getSelectedItem() == "Cajero"){
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id);//
+                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id, experiencia);//
                 controladorUsuario.agregarUsuario(cajero);
             }
 
@@ -466,6 +506,20 @@ public class VistaRegistro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCumpleActionPerformed
 
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+LlenarTabla();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void cbxRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxRolesActionPerformed
+
     private void LlenarTabla(){
         DefaultTableModel model = new DefaultTableModel();
         String[] columns = new String[5];
@@ -553,6 +607,8 @@ public class VistaRegistro extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnListar;
     private javax.swing.JComboBox<String> cbxRoles;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
