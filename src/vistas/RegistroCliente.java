@@ -68,6 +68,8 @@ public class RegistroCliente extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -144,6 +146,8 @@ public class RegistroCliente extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setText("Telefono");
+
         jLayeredPane2.setLayer(btnEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txtCumple, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -158,6 +162,8 @@ public class RegistroCliente extends javax.swing.JFrame {
         jLayeredPane2.setLayer(txtEmail, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBorrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(txtTelefono, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
         jLayeredPane2.setLayout(jLayeredPane2Layout);
@@ -197,7 +203,11 @@ public class RegistroCliente extends javax.swing.JFrame {
                                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtContrasena)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
             jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +217,9 @@ public class RegistroCliente extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCumple, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,12 +245,12 @@ public class RegistroCliente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCerrar))
-                    .addComponent(jLayeredPane2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCerrar)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,7 +268,7 @@ public class RegistroCliente extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,6 +296,9 @@ public class RegistroCliente extends javax.swing.JFrame {
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
             String rol = "Cliente";
+            
+            String telefonoUsu = txtTelefono.getText();
+            
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") || cumple.isEmpty() || cumple.startsWith(" ") ||
                 contrasena.isEmpty() || contrasena.startsWith(" ") ){
@@ -309,8 +324,9 @@ public class RegistroCliente extends javax.swing.JFrame {
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
             Usuario usuario = controlador.buscarUsuario(id);
+            int telefono = Integer.parseInt(telefonoUsu);
             if (usuario.getId() == id) {
-                 Usuario cliente = new Cliente(nombre, email, contrasena, rol, cumplean, id);
+                 Usuario cliente = new Cliente(nombre, email, contrasena, rol, cumplean, id, telefono);
             controlador.actualizarUsuario(cliente);
                 
             }
@@ -335,6 +351,8 @@ public class RegistroCliente extends javax.swing.JFrame {
             String cumple = txtCumple.getText();
             String email = txtEmail.getText();
             String rol = "Cliente";
+       
+            String telefonoUsu = txtTelefono.getText();
             
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") ||
@@ -362,9 +380,10 @@ public class RegistroCliente extends javax.swing.JFrame {
   
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
+            int telefono = Integer.parseInt(telefonoUsu);
 
             if("Cliente".equals(rol)){
-                Usuario cliente = new Cliente(nombre, email, contrasena, rol, cumplean, id);//
+                Usuario cliente = new Cliente(nombre, email, contrasena, rol, cumplean, id, telefono);//
                 controlador.agregarUsuario(cliente);
             }
 
@@ -412,11 +431,12 @@ public class RegistroCliente extends javax.swing.JFrame {
      
      private void LlenarTabla(){
         DefaultTableModel model = new DefaultTableModel();
-        String[] columns = new String[4];
+        String[] columns = new String[5];
         columns[0] = "ID";
         columns[1] = "Nombre";
         columns[2] = "Edad";
-        columns[3] = "Email";     
+        columns[3] = "Email";    
+        columns[4] = "Telefono";
         model.setColumnIdentifiers(columns);
         String[] rows = new String[4];
         
@@ -486,6 +506,7 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane2;
@@ -498,5 +519,6 @@ public class RegistroCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

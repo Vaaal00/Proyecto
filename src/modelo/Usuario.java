@@ -13,12 +13,12 @@ public class Usuario implements Serializable{
     private String email;
     private String contrasena;
     private int telefono;
-    private int edad = getEdad(getCumple());
+    
     
     public Usuario() {
     }
     
-    public Usuario(String nombre,  String rol, LocalDate cumple, String email, String contrasena, int id, int edad, int telefono) {
+    public Usuario(String nombre,  String rol, LocalDate cumple, String email, String contrasena, int id, int telefono) {
         this.cumple = cumple;
         this.nombre = nombre;   
         this.rol = rol;
@@ -29,6 +29,19 @@ public class Usuario implements Serializable{
        
         
     }
+
+    
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+  
+    
 
     public int getId() {
         return id;

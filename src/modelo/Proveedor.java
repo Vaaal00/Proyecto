@@ -10,8 +10,8 @@ public class Proveedor extends Usuario {
     public Proveedor() {
     }
 
-    public Proveedor(String nombre,   Empresa empresa,String contrasena, String email, LocalDate cumple, String rol, int id) {
-        super(nombre,  rol, cumple, email, contrasena, id);
+    public Proveedor(String nombre,   Empresa empresa,String contrasena, String email, LocalDate cumple, String rol, int id,  int telefono) {
+        super(nombre,  rol, cumple, email, contrasena, id, telefono);
         this.empresa = empresa;
         
         

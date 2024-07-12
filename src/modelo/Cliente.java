@@ -12,8 +12,8 @@ public class Cliente extends Usuario {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String email, String contrasena, String rol, LocalDate cumple,int id, int edad, int telefono) {
-        super(nombre,  rol, cumple, email, contrasena, id, edad, telefono);
+    public Cliente(String nombre, String email, String contrasena, String rol, LocalDate cumple,int id,  int telefono) {
+        super(nombre,  rol, cumple, email, contrasena, id,  telefono);
         historialFacturas = new ArrayList<>();
     }
 

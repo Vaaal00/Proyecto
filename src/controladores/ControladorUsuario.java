@@ -60,6 +60,8 @@ public class ControladorUsuario {
         aux.setCumple(usuario.getCumple());
         aux.setEmail(usuario.getEmail());
         aux.setContrasena(usuario.getContrasena());
+        
+        aux.setTelefono(usuario.getTelefono());
         Singleton.getINSTANCE().guardarUsuario();
 
     }

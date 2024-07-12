@@ -9,8 +9,6 @@ import excepciones.FechaValidacionEx;
 import excepciones.IdEx;
 import excepciones.MenorEdadEx;
 import excepciones.UsuarioNoEncontradoEx;
-import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
@@ -68,8 +66,6 @@ public class VistaRegistro extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnBorrar = new javax.swing.JButton();
-        btnListar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtTelefono = new javax.swing.JTextField();
         btnCerrar = new javax.swing.JButton();
@@ -118,7 +114,7 @@ public class VistaRegistro extends javax.swing.JFrame {
 
         jLabel3.setText("Fecha Nacimiento:");
 
-        cbxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una", "Cajero", "Encargado inventario", "Proveedor" }));
+        cbxRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona una", "Cajero", "Encargado inventario", "Cliente", "Proveedor", " " }));
         cbxRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxRolesActionPerformed(evt);
@@ -149,21 +145,13 @@ public class VistaRegistro extends javax.swing.JFrame {
             }
         });
 
-        btnListar.setText("listar");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
-            }
-        });
-
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-
         jLabel7.setText("Telefono");
+
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
 
         jLayeredPane2.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnEditar, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -182,8 +170,6 @@ public class VistaRegistro extends javax.swing.JFrame {
         jLayeredPane2.setLayer(btnAgregar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(btnBorrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(btnListar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(btnLimpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane2.setLayer(txtTelefono, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -229,17 +215,10 @@ public class VistaRegistro extends javax.swing.JFrame {
                                     .addComponent(cbxRoles, 0, 1, Short.MAX_VALUE)
                                     .addComponent(txtContrasena)
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnListar)
-                            .addComponent(btnLimpiar)))
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLayeredPane2Layout.setVerticalGroup(
@@ -272,15 +251,8 @@ public class VistaRegistro extends javax.swing.JFrame {
                     .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane2Layout.createSequentialGroup()
-                        .addComponent(btnLimpiar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnListar)
-                        .addGap(32, 32, 32))))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         btnCerrar.setText("Cerrar Sesion");
@@ -302,11 +274,11 @@ public class VistaRegistro extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 446, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 484, Short.MAX_VALUE)
                         .addComponent(btnCerrar))
                     .addComponent(jLayeredPane2))
                 .addContainerGap())
@@ -315,7 +287,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCerrar)
                     .addComponent(jButton1))
@@ -337,6 +309,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             String tiempoExperiencia = "no";
             String telefonoUsu = txtTelefono.getText();
             int edad = 0;
+            String formacion = "";
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") || cumple.isEmpty() || cumple.startsWith(" ") ||
                 contrasena.isEmpty() || contrasena.startsWith(" ") || cbxRoles.getSelectedIndex() == 0){
@@ -361,23 +334,24 @@ public class VistaRegistro extends javax.swing.JFrame {
 
             int id = Integer.parseInt(idTxt);
             LocalDate cumplean = LocalDate.parse(cumple);
+            int telefono = Integer.parseInt(telefonoUsu);
 
             Usuario usuario = controladorUsuario.buscarUsuario(id);
 
             if(usuario.getRol().equals("Cajero")){
                 
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id, tiempoExperiencia, edad, telefono);
+                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id, tiempoExperiencia,  telefono);
                 controladorUsuario.actualizarUsuario(cajero);
             }
 
             if (usuario.getRol().equals("Encargado inventario")) {
-                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email, contrasena, id);
+                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email, contrasena, id, telefono, formacion);
                 controladorUsuario.actualizarUsuario(encargadoInventario);
             }
 
             if(usuario.getRol().equals("Cliente")){
                 Cliente cliente = (Cliente) usuario;
-                cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id);
+                cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id,  telefono);
                 controladorUsuario.agregarUsuario(cliente);
             }
 
@@ -400,6 +374,7 @@ public class VistaRegistro extends javax.swing.JFrame {
             String experiencia = "NO";
             String telefonoUsu = txtTelefono.getText();
             int edad = 0;
+            String formacion = "";
 
             if(idTxt.isEmpty() || idTxt.startsWith(" ") || nombre.isEmpty() || nombre.startsWith(" ") ||
                 cumple.isEmpty() || cumple.startsWith(" ") ||
@@ -429,20 +404,25 @@ public class VistaRegistro extends javax.swing.JFrame {
             LocalDate cumplean = LocalDate.parse(cumple);
 
             if(cbxRoles.getSelectedItem() == "Cajero"){
-                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id, experiencia, edad, telefono);//
+                Usuario cajero = new Cajero(nombre, rol, email, contrasena, cumplean, id, experiencia,  telefono);//
                 controladorUsuario.agregarUsuario(cajero);
             }
 
             if(cbxRoles.getSelectedItem() == "Encargado inventario"){
 
-                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email,contrasena, id, edad, telefono);
+                Usuario encargadoInventario = new EncargadoInventario(nombre, rol, cumplean, email,contrasena, id,  telefono, formacion);
                 controladorUsuario.agregarUsuario(encargadoInventario);
             }
 // cambiar a proveedor
-            if(cbxRoles.getSelectedItem() == "Proveedor"){
+            if(cbxRoles.getSelectedItem() == "Cliente"){
 
-                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id, edad, telefono);
+                Usuario cliente = new Cliente(nombre, email, contrasena,rol, cumplean, id,  telefono);
                 controladorUsuario.agregarUsuario(cliente);
+            }
+            
+            if (cbxRoles.getSelectedItem()== "Proveedor") {
+                //logica
+                
             }
             JOptionPane.showMessageDialog(null, "Usuario registrado con exito");
             limpiarCampos();
@@ -471,6 +451,7 @@ public class VistaRegistro extends javax.swing.JFrame {
         txtCumple.setText(String.valueOf(usuario.getCumple()));
         txtEmail.setText(usuario.getEmail());
         txtNombre.setText(usuario.getNombre());
+        txtTelefono.setText(String.valueOf(usuario.getTelefono()));
         txtContrasena.setText(usuario.getContrasena());
         cbxRoles.setSelectedItem(usuario.getRol());
 
@@ -526,31 +507,27 @@ public class VistaRegistro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCumpleActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-LlenarTabla();
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
-        limpiarCampos();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
-
     private void cbxRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxRolesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxRolesActionPerformed
 
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
     private void LlenarTabla(){
         DefaultTableModel model = new DefaultTableModel();
-        String[] columns = new String[5];
+        String[] columns = new String[6];
         columns[0] = "ID";
         columns[1] = "Nombre";
         columns[2] = "Edad";
         columns[3] = "Rol";
         columns[4] = "Email";
+        columns[5] = "Telefono";
+       
                 
         model.setColumnIdentifiers(columns);
-        String[] rows = new String[5];
+        String[] rows = new String[7];
         
         for (int i = 0; i < controladorUsuario.getUsuarios().size(); i++) {
             Usuario usuario = controladorUsuario.getUsuarios().get(i);
@@ -559,6 +536,8 @@ LlenarTabla();
             rows[2] = (String.valueOf(usuario.getEdad(usuario.getCumple())));
             rows[3] = String.valueOf(usuario.getRol());
             rows[4] = String.valueOf(usuario.getEmail());
+            rows[5] = String.valueOf(usuario.getTelefono());
+           
             model.addRow(rows);
         }
         tblUsuarios.setModel(model);
@@ -627,8 +606,6 @@ LlenarTabla();
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnLimpiar;
-    private javax.swing.JButton btnListar;
     private javax.swing.JComboBox<String> cbxRoles;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
