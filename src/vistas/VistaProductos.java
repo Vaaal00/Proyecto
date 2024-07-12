@@ -252,6 +252,7 @@ public class VistaProductos extends javax.swing.JFrame {
                 proveedor = (Proveedor) usuario;
             }
         }
+        
         int codigo = Integer.parseInt(txtId.getText());
         String nombre = txtNombre.getText();
         float precio = Float.parseFloat(txtPrecio.getText());
@@ -270,19 +271,73 @@ public class VistaProductos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
+        int codigo = Integer.parseInt(txtId.getText());
+        
+        Producto producto = controlador.buscarProducto(codigo);
+        
+        if (producto != null) {
+            txtNombre.setText(producto.getNombre());
+            cbxCategoria.setSelectedItem(producto.getCategoria());
+            cbxProveedor.setSelectedItem(producto.getProveedor());
+            txtPrecio.setText(String.valueOf(producto.getPrecio()));
+            txtFecha.setText(String.valueOf(producto.getFechaVencimiento()));
+        } else {
+            JOptionPane.showMessageDialog(null, "No existe un producto registrado con el codigo: " + codigo);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        Categoria categoria = null;
+        for (int i = 0; i < controladorCat.getCategorias().size(); i++) {
+            if (controladorCat.getCategorias().get(i).getNombre() == cbxCategoria.getSelectedItem()) {
+            categoria = controladorCat.getCategorias().get(i);
+            }
+        }
+            
+        Proveedor proveedor = null;
+        for (int j = 0; j < controladorUs.getUsuarios().size(); j++) {
+            Usuario usuario = controladorUs.getUsuarios().get(j);
+            if(usuario.getRol().equals("Proveedor") && cbxProveedor.getSelectedItem().equals(usuario.getNombre())){
+                proveedor = (Proveedor) usuario;
+            }
+        }
+        
+        int codigo = Integer.parseInt(txtId.getText());
+        String nombre = txtNombre.getText();
+        float precio = Float.parseFloat(txtPrecio.getText());
+        LocalDate fechaVencimiento = LocalDate.parse(txtFecha.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        
+        Producto producto = new Producto(nombre, codigo, categoria, precio, fechaVencimiento, proveedor);
+        
+        boolean ans = controlador.editarProducto(producto);
+        
+        if (ans) {
+            JOptionPane.showMessageDialog(null, "Información del producto editada");
+            limpiarCampos();
+            llenarTabla();
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo editar la información");
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        int codigo = Integer.parseInt(txtId.getText());
+        
+        boolean ans = controlador.eliminarProducto(codigo);
+        
+        if (ans) {
+            JOptionPane.showMessageDialog(null, "Producto eliminado correctamente");
+            limpiarCampos();
+            llenarTabla();
+        } else {
+            JOptionPane.showMessageDialog(null, "NO existe un producto con el codigo: " + codigo);
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
-        // TODO add your handling code here:
+        VistaEncargadoInventario vei = new VistaEncargadoInventario();
+        vei.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void cargarComboCategoria() {

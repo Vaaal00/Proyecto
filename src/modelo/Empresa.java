@@ -1,8 +1,10 @@
 
 package modelo;
 
+import java.io.Serializable;
 
-public class Empresa {
+
+public class Empresa implements Serializable {
 
     private String nombre;
     private String direccion;
