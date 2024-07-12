@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Categoria;
 import modelo.Producto;
 import modelo.Proveedor;
@@ -38,6 +39,7 @@ public class VistaProductos extends javax.swing.JFrame {
         controladorUs = new ControladorUsuario();
         cargarComboCategoria();
         cargarComboProoveedor();
+        llenarTabla();
     }
 
     /**
@@ -51,7 +53,7 @@ public class VistaProductos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -74,7 +76,7 @@ public class VistaProductos extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRODUCTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,7 +87,7 @@ public class VistaProductos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaProductos);
 
         jLabel1.setText("ID:");
 
@@ -259,7 +261,8 @@ public class VistaProductos extends javax.swing.JFrame {
         
         controlador.agregarProducto(producto);
         JOptionPane.showMessageDialog(null, "Producto añadido");
-        
+        llenarTabla();
+        limpiarCampos();
         
     } catch (ProductoEx ex) {
         JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -301,9 +304,30 @@ public class VistaProductos extends javax.swing.JFrame {
     }
     
     private void llenarTabla() {
-        
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[]{"Codigo", "Nombre", "Categoria", "Fecha Venc", "Proveedor", "Precio"});
+        for (int i = 0; i < controlador.getProductos().size(); i++) {
+            model.addRow(new Object[]{
+                controlador.getProductos().get(i).getCodigo(),
+                controlador.getProductos().get(i).getNombre(),
+                controlador.getProductos().get(i).getCategoria(),
+                controlador.getProductos().get(i).getFechaVencimiento(),
+                controlador.getProductos().get(i).getProveedor(),
+                controlador.getProductos().get(i).getPrecio()
+            });
+        }
+        tablaProductos.setModel(model);
     }
-            
+      
+    private void limpiarCampos() {
+        txtId.setText("");
+        txtNombre.setText("");
+        txtFecha.setText("");
+        txtPrecio.setText("");
+        cbxCategoria.setSelectedIndex(0);
+        cbxProveedor.setSelectedIndex(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -355,7 +379,7 @@ public class VistaProductos extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
