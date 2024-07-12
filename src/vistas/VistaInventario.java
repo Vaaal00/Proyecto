@@ -4,6 +4,7 @@
  */
 package vistas;
 
+import controladores.ControladorInPru;
 import controladores.ControladorInventario;
 import controladores.ControladorProducto;
 import javax.swing.JOptionPane;
@@ -18,7 +19,7 @@ import modelo.Producto;
 public class VistaInventario extends javax.swing.JFrame {
     
     private ControladorProducto controladorProducto;
-    private ControladorInventario controlador;
+    private ControladorInPru controlador;
 
     /**
      * Creates new form VistaInventario
@@ -27,7 +28,7 @@ public class VistaInventario extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         controladorProducto = new ControladorProducto();
-        controlador = new ControladorInventario();
+        controlador = new ControladorInPru();
         cargarCombo();
         llenarTabla();
     }

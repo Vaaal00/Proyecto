@@ -246,8 +246,9 @@ public class VistaProductos extends javax.swing.JFrame {
     try {
         Categoria categoria = null;
         for (int i = 0; i < controladorCat.getCategorias().size(); i++) {
-            if (controladorCat.getCategorias().get(i).getNombre() == cbxCategoria.getSelectedItem()) {
+            if (controladorCat.getCategorias().get(i).getNombre().equals(cbxCategoria.getSelectedItem())) {
             categoria = controladorCat.getCategorias().get(i);
+            break;
             }
         }
             
