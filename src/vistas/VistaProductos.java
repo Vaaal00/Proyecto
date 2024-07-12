@@ -101,6 +101,12 @@ public class VistaProductos extends javax.swing.JFrame {
 
         jLabel6.setText("Precio:");
 
+        cbxCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxCategoriaActionPerformed(evt);
+            }
+        });
+
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,6 +345,14 @@ public class VistaProductos extends javax.swing.JFrame {
         vei.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void cbxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCategoriaActionPerformed
+        for (int i = 0; i < controladorCat.getCategorias().size(); i++) {
+            if (controladorCat.getCategorias().get(i).getNombre().equals(cbxCategoria.getSelectedItem())) {
+                llenarTabla();
+            }
+        }
+    }//GEN-LAST:event_cbxCategoriaActionPerformed
 
     private void cargarComboCategoria() {
         cbxCategoria.addItem("Seleccione una opcion");
