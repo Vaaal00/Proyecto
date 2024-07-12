@@ -18,8 +18,7 @@ public class ControladorLogin {
     }
     
      public ArrayList<Usuario> getUsuarios() {
-        return usuarios;
-        
+        return usuarios;        
     }
  
       public int getIdAdmin() {
@@ -29,24 +28,17 @@ public class ControladorLogin {
       public String getContraAdmin() {
         return contraAdmin;
     }
-      
-      
-      public boolean login(int id, String password){
-        
-        if(id == idAdmin && password.equals(contraAdmin)){
+           
+    public boolean inicio(Usuario usuario, int id, String contrasena) {
+        if (id == idAdmin && contrasena == contraAdmin) {
             return true;
         }
-        
         for (int i = 0; i < usuarios.size(); i++) {
-            Usuario aux = usuarios.get(i);
-            if(id == aux.getId() && password.equals(aux.getContrasena())){
-                Singleton.getINSTANCE().getUsuarios();
+            if(usuarios.get(i).getId() == id && usuarios.get(i).getContrasena() == contrasena) {
                 return true;
             }
         }
         return false;
     }
     
-    
-
 }
