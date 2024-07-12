@@ -3,7 +3,6 @@ package modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.Date;
 
 public class Usuario implements Serializable{
     
@@ -13,18 +12,20 @@ public class Usuario implements Serializable{
     private LocalDate cumple;
     private String email;
     private String contrasena;
-    // telefono y edad
+    private int telefono;
+    private int edad = getEdad(getCumple());
     
     public Usuario() {
     }
     
-    public Usuario(String nombre,  String rol, LocalDate cumple, String email, String contrasena, int id) {
+    public Usuario(String nombre,  String rol, LocalDate cumple, String email, String contrasena, int id, int edad, int telefono) {
         this.cumple = cumple;
         this.nombre = nombre;   
         this.rol = rol;
         this.email = email;
         this.contrasena = contrasena;
         this.id = id;
+        this.telefono = telefono;
        
         
     }
@@ -79,12 +80,6 @@ public class Usuario implements Serializable{
         this.rol = rol;
     }
 
-  
-
-    
-
-   
-    
     public int getEdad (LocalDate cumple){
         Period edad = Period.between(cumple, LocalDate.now());
         return edad.getYears();

@@ -10,8 +10,8 @@ public class Cajero extends Usuario {
     }
     
     public Cajero(String nombre, String rol, String email, String contrasena, LocalDate cumple, int id, 
-            String tiempoExperiencia) {
-        super(nombre,  rol, cumple, email, contrasena, id);
+            String tiempoExperiencia, int edad, int telefono) {
+        super(nombre,  rol, cumple, email, contrasena, id, edad, telefono);
         this.tiempoExperiencia = tiempoExperiencia;
     }
 
