@@ -9,7 +9,7 @@ public class Usuario implements Serializable{
     private int id;
     private String nombre;
     private String rol;
-    private LocalDate cumple;
+    private LocalDate fechaNacimiento;
     private String email;
     private String contrasena;
     private int telefono;
@@ -25,9 +25,7 @@ public class Usuario implements Serializable{
         this.email = email;
         this.contrasena = contrasena;
         this.id = id;
-        this.telefono = telefono;
-       
-        
+        this.telefono = telefono;        
     }
 
     
@@ -51,14 +49,6 @@ public class Usuario implements Serializable{
         this.id = id;
     }
 
-    public LocalDate getCumple() {
-        return cumple;
-    }
-
-    public void setCumple(LocalDate cumple) {
-        this.cumple = cumple;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -74,8 +64,6 @@ public class Usuario implements Serializable{
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-
-   
 
     public String getNombre() {
         return nombre;
@@ -93,9 +81,27 @@ public class Usuario implements Serializable{
         this.rol = rol;
     }
 
-    public int getEdad (LocalDate cumple){
-        Period edad = Period.between(cumple, LocalDate.now());
-        return edad.getYears();
+    public int getEdad() {
+         LocalDate hoy = LocalDate.now();
+             edad = Period.between(fechaNacimiento, hoy).getYears();
+             return edad;
     }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+    
     
 }

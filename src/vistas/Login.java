@@ -8,6 +8,15 @@ package vistas;
 import controladores.ControladorLogin;
 
 import javax.swing.JOptionPane;
+import modelo.Cajero;
+import modelo.Cliente;
+import modelo.EncargadoInventario;
+import modelo.Usuario;
+import vistas.RegistroCliente;
+import vistas.VistaAdmin;
+import vistas.VistaCliente;
+import vistas.VistaEncargadoInventario;
+import vistas.VistaFactura;
 
 /**
  *
@@ -15,13 +24,12 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
     
-    ControladorLogin controladorLogin;
+    ControladorLogin controlador;
 
     public Login() {
         initComponents();
         setLocationRelativeTo(this);
-        controladorLogin = new ControladorLogin();
-       
+        controlador = new ControladorLogin();      
     }
 
     /**
@@ -130,7 +138,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-       String idUsuario = txtId.getText();
+        int id = Integer.parseInt(txtId.getText());
         String contrasena = txtContrasena.getText();
         boolean ans = false;
         int id = Integer.parseInt(idUsuario);
@@ -145,6 +153,29 @@ public class Login extends javax.swing.JFrame {
             incio.setVisible(true);
             this.dispose();
         }
+        
+        for (int i = 0; i < controlador.getUsuarios().size(); i++) {
+            Usuario usuario = controlador.getUsuarios().get(i);
+            if (usuario.getContrasena().equals(contrasena) && usuario.getId() == id) 
+                controlador.inicio(usuario, usuario.getId(), usuario.getContrasena());
+                    if (usuario.getRol().equals("Cajero")) {
+                        Cajero cajero = (Cajero) usuario;
+                        VistaFactura ve = new VistaFactura(cajero);
+                        ve.setVisible(true);
+                        this.dispose();
+                    }else if (usuario.getRol().equals("EncargadoInventario")) {
+                        EncargadoInventario encargadoInventario = (EncargadoInventario) usuario;
+                        VistaEncargadoInventario vd = new VistaEncargadoInventario(encargadoInventario);
+                        vd.setVisible(true);
+                        this.dispose();
+                    }else if (usuario.getRol().equals("Cliente")) {
+                        Cliente cliente = (Cliente) usuario;
+                        VistaCliente vl = new VistaCliente(cliente);
+                        vl.setVisible(true);
+                        this.dispose();
+                    }
+            
+        }  
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnRegistroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroClienteActionPerformed
