@@ -1,11 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * 
+ * 
  */
 package vistas;
 
+import controladores.ControladorCarrito;
 import controladores.ControladorInventario;
 import controladores.ControladorProducto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Inventario;
@@ -13,22 +15,22 @@ import modelo.Producto;
 
 /**
  *
- * @author Valeria
+ * @author Cami
  */
-public class VistaInventario extends javax.swing.JFrame {
-    
+public class VistaCarrito extends javax.swing.JFrame {
+    private ControladorCarrito controladorCarrito;
+    private ControladorInventario controladorInventario;
     private ControladorProducto controladorProducto;
-    private ControladorInventario controlador;
 
     /**
-     * Creates new form VistaInventario
+     * Creates new form VistaCarrito
      */
-    public VistaInventario() {
-        initComponents();
-        setLocationRelativeTo(this);
+    public VistaCarrito() {
         
-        controlador = new ControladorInventario();
-        controladorProducto = new ControladorProducto(controlador);
+        initComponents();
+        controladorCarrito = new ControladorCarrito();
+        controladorInventario = new ControladorInventario();
+        controladorProducto = new ControladorProducto(controladorInventario);
         cargarCombo();
         llenarTabla();
     }
@@ -42,6 +44,7 @@ public class VistaInventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnInicio = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -49,18 +52,31 @@ public class VistaInventario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         spCantidad = new javax.swing.JSpinner();
         btnAgregar = new javax.swing.JButton();
+        btnTotalPagar = new javax.swing.JButton();
         btnRestar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaInventario = new javax.swing.JTable();
-        btnInicio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnInicio.setText("Inicio");
+        btnInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInicioActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INVENTARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACTUALIZAR INVENTARIO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
         jLabel1.setText("Producto:");
+
+        cbxProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxProductoActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Cantidad:");
 
@@ -71,6 +87,13 @@ public class VistaInventario extends javax.swing.JFrame {
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
+            }
+        });
+
+        btnTotalPagar.setText("Total");
+        btnTotalPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTotalPagarActionPerformed(evt);
             }
         });
 
@@ -86,9 +109,9 @@ public class VistaInventario extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -97,9 +120,15 @@ public class VistaInventario extends javax.swing.JFrame {
                             .addComponent(cbxProducto, 0, 88, Short.MAX_VALUE)
                             .addComponent(spCantidad)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRestar)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(btnTotalPagar))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnAgregar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnRestar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -114,10 +143,12 @@ public class VistaInventario extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(spCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnRestar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTotalPagar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -150,13 +181,6 @@ public class VistaInventario extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
         );
 
-        btnInicio.setText("Inicio");
-        btnInicio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInicioActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,34 +203,72 @@ public class VistaInventario extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        Producto producto = null;
-        for (int i = 0; i < controladorProducto.getProductos().size(); i++) {
-            if (controladorProducto.getProductos().get(i).getNombre().equals(cbxProducto.getSelectedItem().toString())) {
-            producto = controladorProducto.getProductos().get(i);
-            }
-        }  
-        
-        int cantidad = Integer.parseInt(spCantidad.getValue().toString());
-        
-        Inventario inventario = new Inventario(producto, cantidad);
-        
-        boolean ans = controlador.agregarProducto(producto, cantidad);
-        
-        if (ans) {
-            JOptionPane.showMessageDialog(null, "Inventario actualizado");
-            limpiarCampos();
-            llenarTabla();
-        } else {
-            JOptionPane.showMessageDialog(null, "No se actualizó el inventario");
-        }
-    }//GEN-LAST:event_btnAgregarActionPerformed
-
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         VistaEncargadoInventario vei = new VistaEncargadoInventario();
         vei.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        Producto producto = null;
+        for (int i = 0; i < controladorProducto.getProductos().size(); i++) {
+            if (controladorProducto.getProductos().get(i).getNombre().equals(cbxProducto.getSelectedItem().toString())) {
+                producto = controladorProducto.getProductos().get(i);
+            }
+        }
+
+        int cantidad = Integer.parseInt(spCantidad.getValue().toString());
+
+        if (controladorCarrito.agregarAlCarrito(producto, cantidad)) {
+        JOptionPane.showMessageDialog(this, "Producto agregado al carrito.");
+        // Actualizar la tabla
+        llenarTabla();
+        //limpiarCampos();
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo agregar el producto. Stock insuficiente.");
+    }
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void limpiarCampos() {
+        cbxProducto.setSelectedIndex(0); 
+        spCantidad.setValue(1);
+    }
+    
+    private void cargarCombo() {
+        cbxProducto.addItem("Seleccione una opcion");
+        for (int i = 0; i < controladorProducto.getProductos().size(); i++) {
+            cbxProducto.addItem(controladorProducto.getProductos().get(i).getNombre());
+        }
+    }
+     
+  private void llenarTabla() {
+    DefaultTableModel model = new DefaultTableModel();
+    model.setColumnIdentifiers(new Object[]{"ID", "Producto", "Categoria", "Cantidad"});
+
+    // Obtener los productos del carrito a través del controlador
+    ArrayList<Inventario> carrito = controladorCarrito.obtenerInventariosDelCarrito();
+
+    // Llenar la tabla con productos del carrito
+    for (Inventario inventario : carrito) {
+        model.addRow(new Object[]{
+            inventario.getProducto().getCodigo(),
+            inventario.getProducto().getNombre(),
+            inventario.getProducto().getCategoria(),
+            inventario.getCantidad()
+        });
+    }
+    
+    tablaInventario.setModel(model);
+}
+    private void cbxProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxProductoActionPerformed
+
+    private void btnTotalPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTotalPagarActionPerformed
+        // TODO add your handling code here:
+        float total = controladorCarrito.calcularTotal();
+        JOptionPane.showMessageDialog(this, "Total a pagar: " + total);
+    }//GEN-LAST:event_btnTotalPagarActionPerformed
 
     private void btnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarActionPerformed
         // TODO add your handling code here:
@@ -219,42 +281,16 @@ public class VistaInventario extends javax.swing.JFrame {
         
         int cantidad = Integer.parseInt(spCantidad.getValue().toString());
         
-         boolean resultado = controlador.restarStock(producto, cantidad);
+         boolean resultado = controladorCarrito.eliminarDelCarrito(producto, cantidad);
         
        if (resultado) {
-        JOptionPane.showMessageDialog(this, "Cantidad modificada.");
+        JOptionPane.showMessageDialog(this, "Producto eliminado del carrito.");
         llenarTabla(); // Llenar nuevamente la tabla para reflejar cambios
     } else {
-        JOptionPane.showMessageDialog(this, "No se pudo modificar, hay ");
+        JOptionPane.showMessageDialog(this, "No se pudo eliminar el producto del carrito.");
     }
     }//GEN-LAST:event_btnRestarActionPerformed
 
-    private void cargarCombo() {
-        cbxProducto.addItem("Seleccione una opcion");
-        for (int i = 0; i < controladorProducto.getProductos().size(); i++) {
-            cbxProducto.addItem(controladorProducto.getProductos().get(i).getNombre());
-        }
-    }
-    
-    private void llenarTabla() {
-        DefaultTableModel model = new DefaultTableModel();
-        model.setColumnIdentifiers(new Object[]{"ID", "Producto", "Categoria", "Cantidad"});
-        for (int i = 0; i < controlador.getInventarios().size(); i++) {
-            model.addRow(new Object[]{
-                controlador.getInventarios().get(i).getProducto().getCodigo(),
-                controlador.getInventarios().get(i).getProducto().getNombre(),
-                controlador.getInventarios().get(i).getProducto().getCategoria(),
-                controlador.getInventarios().get(i).getCantidad()
-            });
-        }
-        tablaInventario.setModel(model);
-    }
-    
-    private void limpiarCampos() {
-        cbxProducto.setSelectedIndex(0); 
-        spCantidad.setValue(1);
-    }
-    
     /**
      * @param args the command line arguments
      */
@@ -272,20 +308,20 @@ public class VistaInventario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VistaInventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaCarrito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaInventario().setVisible(true);
+                new VistaCarrito().setVisible(true);
             }
         });
     }
@@ -294,6 +330,7 @@ public class VistaInventario extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnRestar;
+    private javax.swing.JButton btnTotalPagar;
     private javax.swing.JComboBox<String> cbxProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

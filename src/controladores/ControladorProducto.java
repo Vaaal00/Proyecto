@@ -10,8 +10,10 @@ import singleton.SingletonProducto;
 public class ControladorProducto {
 
     private ArrayList<Producto> productos;
+    private ControladorInventario controladorInventario;
 
-    public ControladorProducto() {
+    public ControladorProducto(ControladorInventario controladorInventario) {
+        this.controladorInventario = controladorInventario;
         productos = SingletonProducto.getINSTANCIA().getProductos();             
     }
 
@@ -57,6 +59,7 @@ public class ControladorProducto {
             if (productos.get(i).getCodigo() == codigo) {
                 productos.remove(i);
                 SingletonProducto.getINSTANCIA().escribirProducto();
+                controladorInventario.eliminarProducto(codigo);
                 return true;
             }
         }

@@ -5,6 +5,7 @@
 package vistas;
 
 import controladores.ControladorCategoria;
+import controladores.ControladorInventario;
 import controladores.ControladorProducto;
 import controladores.ControladorUsuario;
 import excepciones.ProductoEx;
@@ -27,6 +28,8 @@ public class VistaProductos extends javax.swing.JFrame {
     private ControladorProducto controlador;
     private ControladorCategoria controladorCat;
     private ControladorUsuario controladorUs;
+    private ControladorInventario controladorinventario;
+    
     
     /**
      * Creates new form VistaProductos
@@ -34,12 +37,14 @@ public class VistaProductos extends javax.swing.JFrame {
     public VistaProductos() {
         initComponents();
         setLocationRelativeTo(this);
-        controlador = new ControladorProducto();
+        controladorinventario = new ControladorInventario();
+        controlador = new ControladorProducto(controladorinventario);
         controladorCat = new ControladorCategoria();
         controladorUs = new ControladorUsuario();
+        llenarTabla();
         cargarComboCategoria();
         cargarComboProoveedor();
-        llenarTabla();
+        
     }
 
     /**
